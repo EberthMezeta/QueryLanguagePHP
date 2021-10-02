@@ -1,7 +1,15 @@
 <?php 
- require_once("./DBConnection.php");
- $connection = new DBConnection();
 
+class DBgetData
+ {
+    public function get_Array_Result($connection, $query)
+    {
+        $statement= $connection-> prepare($query);
+        $statement->execute();
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+ }
 
 
 ?>

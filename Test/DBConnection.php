@@ -25,16 +25,4 @@ class DBConnection
   }
 
 }
-
- $con = new DBConnection();
- $connx= $con->get_connection();
-
- $stmt =  $connx -> prepare("SELECT product_name FROM products WHERE product_name='Northwind Traders Beer'");
-
-$stmt->execute();
-
-$result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-var_dump($result);
-
 ?>
