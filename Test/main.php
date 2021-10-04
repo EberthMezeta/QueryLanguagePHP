@@ -4,7 +4,7 @@
     require_once("./DBgetData.php");
     require_once("./queryMaker.php");
     //Se recibe la query
-
+    //$rawQuery = $_POST["q"];
 
     $ObjectConnection = new DBConnection();
     $ObjectGetData = new DBgetData();
