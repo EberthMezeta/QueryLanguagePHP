@@ -19,6 +19,7 @@ try {
 //var_dump($Values);
 */
 //$FieldByDefault = [, , ];
+
 function escapeCharacters($string){
     $characteres = ['(',')',' ']; 
     $string = str_replace($characteres,"",$string);
@@ -26,8 +27,9 @@ function escapeCharacters($string){
 }
 
 $Query = "Papas Potato AND NOT Chips AND CADENA(con chile) OR PATRON(sabri) CAMPOS(products.description)";
+$Query3 = "Papas Potato AND NOT Chips AND CADENA(con chile) OR PATRON(sabri)";
 //$Query = strtolower($Query);
-
+$fields = ["products.product_name","products.quantity_per_unit","products.category"];
 //$q = preg_split("/\s+/", $Query);
 //echo var_dump($q);
 if (strpos($Query,"CAMPOS")) {
@@ -37,6 +39,27 @@ if (strpos($Query,"CAMPOS")) {
 }
 $raw = explode("CAMPOS",$Query);
 var_dump($raw);
+$raw[1] = escapeCharacters($raw[1]);
+
+var_dump($raw);
+
+
+function getColums(){
+
+    return "col";
+}
+
+function getTables(){
+
+    return "tab";
+}
+
+function getWhere(){
+    return "whe";
+}
+
+$Q3 = "SELECT".getColums()."FROM".getTables()."WHERE".getWhere();
+
 
 //$Query2 = preg_replace("/s{2,}/","-",$Query);
 //echo "Query 1:";

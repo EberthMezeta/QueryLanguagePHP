@@ -9,7 +9,7 @@
     $ObjectConnection = new DBConnection();
     $ObjectGetData = new DBgetData();
     
-    $query = "SELECT product_name FROM products WHERE product_name='Northwind Traders Beer'";
+    $query = "SELECT product_name FROM products WHERE product_name like '%Northwind%'";
 
     $connection = $ObjectConnection->get_connection();
 

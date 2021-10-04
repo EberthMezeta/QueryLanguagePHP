@@ -6,7 +6,7 @@ class DBgetData
     {
         $statement= $connection-> prepare($query);
         $statement->execute();
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
  }
