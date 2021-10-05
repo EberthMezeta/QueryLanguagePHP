@@ -28,6 +28,10 @@ h1 {
 }
 
 #Results{
-    margin-left: 15%;
-    margin-right: 15%;
+  display: flex;
+  justify-content: center;
+}
+
+table th td{
+   text-align: center;
 }
