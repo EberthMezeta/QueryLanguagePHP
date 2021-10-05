@@ -7,14 +7,16 @@ class queryMaker
     private $stringquery;
 
     public function __construct($query) {
-        if (strpos($query,"campos")) {
+    
+        if (strpos($query,"campos")!== false) {
             $rawFields = explode("campos",$query);
             $rawFields[1] = $this->escapeCharacters($rawFields[1]);
             $this->fields = explode(",",$rawFields[1]);
             $this->tables = $this->getTables();
             $this->stringquery = $rawFields[0];
+        }else{
+            $this->stringquery = $query;
         }
-        $this->stringquery = $query;
     }
 
     private function getTables()
@@ -136,6 +138,7 @@ class queryMaker
         } 
         $FinalQuery = $QueryStatement."".$QueryWhereStatement;
         $FinalQuery = str_replace("¨"," ",$FinalQuery);
+      
         return  $FinalQuery;
     }
 }   

@@ -106,7 +106,7 @@ $QueryStatement = "";
 
 for ($i=0; $i < $sizeArray ; $i++) { 
    if (!in_array($words[$i],$operators)) {
-       $QueryStatement .= " ". parserWordToSQLstatement($words[$i]);
+       $QueryStatement .= " ".   parserWordToSQLstatement($words[$i]);
    }else{
        $QueryStatement.= " ".$words[$i];
    }
