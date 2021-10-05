@@ -136,16 +136,7 @@ class queryMaker
         } 
         $FinalQuery = $QueryStatement."".$QueryWhereStatement;
         $FinalQuery = str_replace("¨"," ",$FinalQuery);
-        echo $FinalQuery;
         return  $FinalQuery;
     }
 }   
-    /*
-    $Query = "Papas Potato AND NOT Chips AND CADENA(con chile) OR PATRON(sabri) CAMPOS(products.description,products.category,emplooyes.SAT)";
-    //$Query = "Papas";
-    $Query = strtolower($Query);
-    $queryMakerObject = new queryMaker($Query);
-    //$queryMakerObject->printFileds();
-    $QueryStatement= $queryMakerObject ->builder();
-    */
 ?>
