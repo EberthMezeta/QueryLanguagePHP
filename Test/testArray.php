@@ -57,6 +57,9 @@ function changeFunctionPatron($string)
 }
 
 
+$operators = ["not","or","and"];
+
+
 function parserCadenaToSQLstatement($statement)
 {
     $fields = ["products.product_name","products.quantity_per_unit","products.category"];
@@ -64,7 +67,7 @@ function parserCadenaToSQLstatement($statement)
     $string = str_replace($characteres,"",$statement);
     $string = str_replace(" ","¨",$string);
     $fixstring = $string;
-    $string = implode("='".$string."' OR ",$fields);
+    $string = implode("='".$string."' or ",$fields);
     return $string."='". $fixstring."'";
 }
 
@@ -75,8 +78,15 @@ function parserPatronToSQLstatement($statement)
     $string = str_replace($characteres,"",$statement);
     $string = str_replace(" ","¨",$string);
     $fixstring = $string;
-    $string = implode("¨LIKE¨'%".$string."' OR ",$fields);
+    $string = implode("¨LIKE¨'%".$string."' or ",$fields);
     return $string."¨LIKE¨'%".$fixstring."'";
+}
+
+function parserWordToSQLstatement($word)
+{
+    $fields = ["products.product_name","products.quantity_per_unit","products.category"];
+    $string = implode("¨LIKE¨'%".$word."' or ",$fields);
+    return $string."¨LIKE¨'%".$word."'";
 }
 
 echo $Query."\n";
@@ -84,8 +94,25 @@ echo $Query."\n";
 $Query = changeFunctionCadena($Query);
 $Query = changeFunctionPatron($Query);
 
-echo $Query."\n";
+$Query = trim($Query);
+//echo $Query."\n";
 
+$words = explode(" ",$Query);
+
+//var_dump($words);
+$sizeArray = sizeof($words);
+
+$QueryStatement = "";
+
+for ($i=0; $i < $sizeArray ; $i++) { 
+   if (!in_array($words[$i],$operators)) {
+       $QueryStatement .= " ". parserWordToSQLstatement($words[$i]);
+   }else{
+       $QueryStatement.= " ".$words[$i];
+   }
+}
+
+echo $QueryStatement;
 
 
 
